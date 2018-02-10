@@ -1,3 +1,9 @@
 .comments-cont {
     margin-top: 10px;
 }
+
+.comments-cont .comment-create-inp {
+    width: 100%;
+    padding: 5px;
+    margin: 0px;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommentService } from '../services/comment.service';
 
 @Component({
   selector: 'app-update',
@@ -9,8 +10,9 @@ export class UpdateComponent implements OnInit {
   @Input() public update: any;
   public loading: boolean;
   public showComments: boolean = false;
+  private commentPage: number = 0;
 
-  constructor() { }
+  constructor(private commentService: CommentService) { }
 
   ngOnInit() {
   }
@@ -20,9 +22,25 @@ export class UpdateComponent implements OnInit {
   }
 
   public comment() {
+    this.commentService.getCommentsForUpdate(this.update.id, this.commentPage)
+      .subscribe(resp => {
+        this.commentPage++;
+        if (!(this.update.comments instanceof Array)) {
+          this.update.comments = [];
+        }
+        const jsonResp = resp.json();
+        for (let i of jsonResp) {
+          this.update.comments.push(i);
+        }
+      });
     this.showComments = true;
 
     return false;
+  }
+
+  public commentAdded(commentData: any) {
+    this.update.comments.push(commentData);
+    this.update.commentsCount++;
   }
 
   get likeText() {

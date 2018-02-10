@@ -3,6 +3,6 @@
     <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
   </div>
   <div>
-    <input style="width: 100%;">
+    <input #commentInp (keydown.enter)="createComment(commentInp.value)" class="comment-create-inp">
   </div>
 </div>
