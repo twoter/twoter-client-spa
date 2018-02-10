@@ -1,0 +1,8 @@
+<div class="update-item">
+  {{ update.content }}
+  <div>
+    {{ likesCount }} <a href="#" (click)="like()">{{ likeText }}</a>
+    {{ commentsCount }} <a href="#" (click)="comment()">comment</a>
+  </div>
+  <app-comments *ngIf="showComments" [comments]="comments"></app-comments>
+</div>
