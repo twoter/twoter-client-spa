@@ -10,7 +10,7 @@ export class UpdateComponent implements OnInit {
   @Input() public update: any;
   public loading: boolean;
   public showComments: boolean = false;
-  private commentPage: number = 0;
+  private commentPage: number = 1;
 
   constructor(private commentService: CommentService) { }
 

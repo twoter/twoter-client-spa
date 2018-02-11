@@ -16,6 +16,7 @@ import { AuthGuard } from './services/auth.guard';
 import { routing } from './app.routing';
 import { AuthService } from './services/auth.service';
 import { CommentService } from './services/comment.service';
+import { UpdateService } from './services/update.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CommentService } from './services/comment.service';
     customHttpProvider,
     AuthGuard,
     AuthService,
-    CommentService
+    CommentService,
+    UpdateService
   ],
   bootstrap: [AppComponent]
 })
