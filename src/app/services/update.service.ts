@@ -21,4 +21,12 @@ export class UpdateService {
     return this.http.post(environment.api_url + 'update', data);
   }
 
+  public likeUpdate(updateId: number) {
+    return this.http.put(environment.api_url + 'update/like/' + updateId);
+  }
+
+  public unlikeUpdate(updateId: number) {
+    return this.http.put(environment.api_url + 'update/unlike/' + updateId);
+  }
+
 }

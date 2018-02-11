@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../services/comment.service';
+import { UpdateService } from '../services/update.service';
 
 @Component({
   selector: 'app-update',
@@ -12,12 +13,29 @@ export class UpdateComponent implements OnInit {
   public showComments: boolean = false;
   private commentPage: number = 1;
 
-  constructor(private commentService: CommentService) { }
+  constructor(
+    private commentService: CommentService,
+    private updateService: UpdateService
+  ) { }
 
   ngOnInit() {
   }
 
   public like() {
+    if (this.update.liked) {
+      this.updateService.unlikeUpdate(this.update.id)
+        .subscribe(resp => {
+          this.update.liked = false;
+          this.update.likes--;
+        });
+    } else {
+      this.updateService.likeUpdate(this.update.id)
+        .subscribe(resp => {
+          this.update.liked = true;
+          this.update.likes++;
+        });
+    }
+
     return false;
   }
 
