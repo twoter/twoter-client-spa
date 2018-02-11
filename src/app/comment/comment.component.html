@@ -1,6 +1,6 @@
 <div class="comment-item">
   {{ comment.content }}
   <div>
-    {{ likes }} <a href="#">like</a>
+    {{ likes }} <a href="#" (click)="like()">{{ likeText }}</a>
   </div>
 </div>

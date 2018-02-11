@@ -21,4 +21,12 @@ export class CommentService {
     return this.http.post(environment.api_url + 'comment', data);
   }
 
+  public likeComment(commentId: number) {
+    return this.http.put(environment.api_url + 'comment/like/' + commentId);
+  }
+
+  public unlikeComment(commentId: number) {
+    return this.http.put(environment.api_url + 'comment/unlike/' + commentId);
+  }
+
 }
