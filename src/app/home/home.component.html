@@ -2,6 +2,7 @@
   home works!
 </p>
 <div style="width: 500px; margin: auto;">
+  <app-update-create (posted)="updatePosted($event)"></app-update-create>
   <app-update *ngFor="let update of updates" [update]="update"></app-update>
   <div>
     <button type="button" (click)="loadUpdates();">load more</button>

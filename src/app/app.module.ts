@@ -17,6 +17,7 @@ import { routing } from './app.routing';
 import { AuthService } from './services/auth.service';
 import { CommentService } from './services/comment.service';
 import { UpdateService } from './services/update.service';
+import { UpdateCreateComponent } from './update-create/update-create.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UpdateService } from './services/update.service';
     CommentsComponent,
     CommentComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    UpdateCreateComponent
   ],
   imports: [
     BrowserModule,

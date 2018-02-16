@@ -7,21 +7,7 @@ import { UpdateService } from '../services/update.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public updates: any[] = [
-    // {
-    //   id: 1,
-    //   content: 'text1'
-    // },
-    // {
-    //   id: 2,
-    //   content: 'text2',
-    //   comments: [
-    //     {
-    //       content: 'comment1'
-    //     },
-    //   ]
-    // },
-  ];
+  public updates: any[] = [];
   private page: number = 1;
 
   constructor(private updateService: UpdateService) { }
@@ -39,6 +25,10 @@ export class HomeComponent implements OnInit {
         this.updates.push(i);
       }
     });
+  }
+
+  public updatePosted(value) {
+    this.updates.unshift(value);
   }
 
 }
