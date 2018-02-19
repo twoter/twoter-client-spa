@@ -1,8 +1,13 @@
 <div class="update-item">
-  {{ update.content }}
+  <div *ngIf="update.user">
+    {{ update.user.firstName }} {{ update.user.lastName }}
+  </div>
+  <div class="update-content">{{ update.content }}</div>
   <div>
-    {{ likesCount }} <a href="#" (click)="like()">{{ likeText }}</a>
-    {{ commentsCount }} <a href="#" (click)="comment()">comment</a>
+    {{ likesCount }}
+    <a href="#" (click)="like()">{{ likeText }}</a>
+    {{ commentsCount }}
+    <a href="#" (click)="comment()">comment</a>
   </div>
   <app-comments *ngIf="showComments" [comments]="comments" [updateId]="update.id" (commentAdded)="commentAdded($event)"></app-comments>
 </div>
