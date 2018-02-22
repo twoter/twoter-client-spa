@@ -27,7 +27,7 @@ import { UpdateCreateComponent } from './update-create/update-create.component';
     CommentComponent,
     HomeComponent,
     LoginComponent,
-    UpdateCreateComponent
+    UpdateCreateComponent,
   ],
   imports: [
     BrowserModule,
