@@ -19,19 +19,18 @@ export class UpdateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(JSON.stringify(this.update, null, 2))
     const tagNames: string[] = [];
     for (let tag of this.update.tags || []) {
       tagNames.push(tag.name);
     }
     this.update.content = this.escapeHtml(this.update.content);
-    console.log(JSON.stringify(tagNames, null, 2))
     for (let tag of tagNames) {
-      this.update.content = this.update.content.replace(new RegExp('(\#' + tag + ')'), '<a href="#" style="color: green;">$1</a>')
+      this.update.content = this.replaceTagInContent(this.update, tag);
     }
-    console.log('CONTENT')
-    console.log(this.update.content)
-    console.log('--')
+  }
+
+  private replaceTagInContent(update: any, tag: string): string {
+    return update.content.replace(new RegExp('(\#' + tag + ')'), '<a href="#" style="color: green;">$1</a>');
   }
 
   private escapeHtml(text) {
