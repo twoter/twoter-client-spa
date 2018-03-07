@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { CommentService } from './services/comment.service';
 import { UpdateService } from './services/update.service';
 import { UpdateCreateComponent } from './update-create/update-create.component';
+import { EditComponent } from './user/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UpdateCreateComponent } from './update-create/update-create.component';
     HomeComponent,
     LoginComponent,
     UpdateCreateComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
