@@ -19,6 +19,8 @@ import { CommentService } from './services/comment.service';
 import { UpdateService } from './services/update.service';
 import { UpdateCreateComponent } from './update-create/update-create.component';
 import { EditComponent } from './user/edit/edit.component';
+import { ResourceService } from './services/resource.service';
+import { ImageViewUploadComponent } from './common/components/image-view-upload/image-view-upload.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { EditComponent } from './user/edit/edit.component';
     LoginComponent,
     UpdateCreateComponent,
     EditComponent,
+    ImageViewUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { EditComponent } from './user/edit/edit.component';
     AuthGuard,
     AuthService,
     CommentService,
-    UpdateService
+    UpdateService,
+    ResourceService
   ],
   bootstrap: [AppComponent]
 })

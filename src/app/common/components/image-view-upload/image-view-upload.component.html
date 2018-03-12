@@ -1,0 +1,7 @@
+<div>
+  <form method="post" enctype="multipart/form-data">
+    <input #inp style="display:none;" type="file" (change)="fileChange($event)" placeholder="Upload file">
+  </form>
+
+  <img src="#" (click)="triggerUpload()" alt="no image" />
+</div>

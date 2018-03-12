@@ -1,3 +1,11 @@
-<p>
-  edit works!
-</p>
+<div class="edit-page">
+  <form (ngSubmit)="edit(form)" #form="ngForm">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" [(ngModel)]="data.username" name="username" #username="ngModel" class="form-control"
+      id="username" [readonly]="loading || !data.username" [required]="data.username">
+    <small class="text-danger" *ngIf="(username.touched || username.dirty) && !username.valid">
+      Username is invalid.
+    </small>
+  </form>
+  <app-image-view-upload></app-image-view-upload>
+</div>
