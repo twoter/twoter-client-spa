@@ -17,6 +17,17 @@ export class UpdateService {
     });
   }
 
+  public searchUpdates(query: string, page?: number) {
+    const params: any = { query };
+    if (0 < page) {
+      params.page = page;
+    }
+    return this.http.get(environment.api_url + 'update/list', {
+      params: params
+    });
+  }
+
+
   public createUpdate(data: { content: string }) {
     return this.http.post(environment.api_url + 'update', data);
   }

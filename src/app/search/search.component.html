@@ -1,0 +1,11 @@
+<div style="width: 500px; margin: auto;">
+  <div *ngIf="loading">
+    Loading...
+  </div>
+  <div *ngIf="!loading">
+    <app-update *ngFor="let update of updates" [update]="update"></app-update>
+    <div>
+      <button type="button" (click)="loadUpdates();">load more</button>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   <div *ngIf="update.user">
     {{ update.user.firstName }} {{ update.user.lastName }}
   </div>
-  <div class="update-content" style="white-space: pre-line;" [innerHTML]="update.content"></div>
+  <div class="update-content" style="white-space: pre-line;" [innerHTML]="update.content" (click)="tagClick($event)"></div>
   <div>
     {{ likesCount }}
     <a href="#" (click)="like()">{{ likeText }}</a>

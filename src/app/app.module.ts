@@ -21,6 +21,7 @@ import { UpdateCreateComponent } from './update-create/update-create.component';
 import { EditComponent } from './user/edit/edit.component';
 import { ResourceService } from './services/resource.service';
 import { ImageViewUploadComponent } from './common/components/image-view-upload/image-view-upload.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ImageViewUploadComponent } from './common/components/image-view-upload/
     UpdateCreateComponent,
     EditComponent,
     ImageViewUploadComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

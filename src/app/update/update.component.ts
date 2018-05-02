@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../services/comment.service';
 import { UpdateService } from '../services/update.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update',
@@ -14,6 +15,7 @@ export class UpdateComponent implements OnInit {
   private commentPage: number = 1;
 
   constructor(
+    private router: Router,
     private commentService: CommentService,
     private updateService: UpdateService
   ) { }
@@ -31,6 +33,18 @@ export class UpdateComponent implements OnInit {
 
   private replaceTagInContent(update: any, tag: string): string {
     return update.content.replace(new RegExp('(\#' + tag + ')'), '<a href="#" style="color: green;">$1</a>');
+  }
+
+  public tagClick(e) {
+    if (this.isLink(e.target)) {
+      this.viewTag(e.target.innerHTML);
+    }
+
+    return false;
+  }
+
+  private isLink(element) {
+    return element && 'A' === element.tagName;
   }
 
   private escapeHtml(text) {
@@ -80,6 +94,16 @@ export class UpdateComponent implements OnInit {
   public commentAdded(commentData: any) {
     this.update.comments.push(commentData);
     this.update.commentsCount++;
+  }
+
+  public viewTag(tag: string) {
+    this.router.navigate(['/search'], {
+      queryParams: {
+        q: tag
+      }
+    });
+
+    return false;
   }
 
   get likeText() {

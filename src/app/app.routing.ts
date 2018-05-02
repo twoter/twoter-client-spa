@@ -3,6 +3,7 @@ import { AuthGuard } from './services/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { EditComponent } from './user/edit/edit.component';
+import { SearchComponent } from './search/search.component';
 
 const appRoutes: Routes = [
   {
@@ -14,6 +15,11 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
     canActivate: [AuthGuard]
   },
   {
