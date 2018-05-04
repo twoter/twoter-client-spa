@@ -1,6 +1,6 @@
 <div class="update-item">
   <div *ngIf="update.user">
-    {{ update.user.firstName }} {{ update.user.lastName }}
+    <a href="#" (click)="viewUser()">{{ update.user.firstName }} {{ update.user.lastName }}</a>
   </div>
   <div class="update-content" style="white-space: pre-line;" [innerHTML]="update.content" (click)="tagClick($event)"></div>
   <div>

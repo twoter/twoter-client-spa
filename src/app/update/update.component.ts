@@ -106,6 +106,19 @@ export class UpdateComponent implements OnInit {
     return false;
   }
 
+  public viewUser() {
+    if (!this.update.user) {
+      return false;
+    }
+    this.router.navigate(['/user'], {
+      queryParams: {
+        id: this.update.user.id
+      }
+    });
+
+    return false;
+  }
+
   get likeText() {
     return (this.update && this.update.liked) ? 'unlike' : 'like';
   }

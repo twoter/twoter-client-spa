@@ -12,6 +12,8 @@ import { CommentComponent } from './comment/comment.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 
+import { UserService } from './services/user.service';
+
 import { AuthGuard } from './services/auth.guard';
 import { routing } from './app.routing';
 import { AuthService } from './services/auth.service';
@@ -22,6 +24,7 @@ import { EditComponent } from './user/edit/edit.component';
 import { ResourceService } from './services/resource.service';
 import { ImageViewUploadComponent } from './common/components/image-view-upload/image-view-upload.component';
 import { SearchComponent } from './search/search.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { SearchComponent } from './search/search.component';
     EditComponent,
     ImageViewUploadComponent,
     SearchComponent,
+    UserViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { SearchComponent } from './search/search.component';
     AuthService,
     CommentService,
     UpdateService,
-    ResourceService
+    ResourceService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

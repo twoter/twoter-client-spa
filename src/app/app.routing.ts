@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { EditComponent } from './user/edit/edit.component';
 import { SearchComponent } from './search/search.component';
+import { UserViewComponent } from './user/user-view/user-view.component';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +26,11 @@ const appRoutes: Routes = [
   {
     path: 'edit',
     component: EditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user',
+    component: UserViewComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -17,6 +17,16 @@ export class UpdateService {
     });
   }
 
+  public getUpdatesForUser(userId: number, page?: number) {
+    const params: any = {};
+    if (0 < page) {
+      params.page = page;
+    }
+    return this.http.get(environment.api_url + 'update/list/user/' + userId, {
+      params: params
+    });
+  }
+
   public searchUpdates(query: string, page?: number) {
     const params: any = { query };
     if (0 < page) {
