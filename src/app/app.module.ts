@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 
 import { UserService } from './services/user.service';
+import { ScrollService } from './services/scroll.service';
 
 import { AuthGuard } from './services/auth.guard';
 import { routing } from './app.routing';
@@ -54,7 +55,8 @@ import { UserViewComponent } from './user/user-view/user-view.component';
     CommentService,
     UpdateService,
     ResourceService,
-    UserService
+    UserService,
+    ScrollService
   ],
   bootstrap: [AppComponent]
 })
