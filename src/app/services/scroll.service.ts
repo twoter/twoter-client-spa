@@ -1,20 +1,22 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class ScrollService {
 
-  public scrolledPastPoint: EventEmitter<boolean>;
+  private subject: Subject<boolean>;
 
   constructor() {
-    this.scrolledPastPoint = new EventEmitter();
+    this.subject = new Subject();
   }
 
   public setScrolledPastPoint(scrollStatus: boolean) {
-    this.scrolledPastPoint.emit(scrollStatus);
+    this.subject.next(scrollStatus);
   }
 
-  public subscribe(success, error?, compelete?) {
-    return this.scrolledPastPoint.subscribe(success, error, compelete);
+  public subscribe(success, error?, compelete?): Subscription {
+    return this.subject.subscribe(success, error, compelete);
   }
 
 }

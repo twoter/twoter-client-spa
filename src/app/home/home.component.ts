@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UpdateService } from '../services/update.service';
 import { ScrollService } from '../services/scroll.service';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public updates: any[] = [];
   private page: number = 1;
   private loadingUpdates: boolean;
+
+  private scrollSubscription: Subscription;
 
   constructor(
     private updateService: UpdateService,
@@ -20,11 +25,19 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.loadUpdates();
 
-    this.scrollService.subscribe(resp => {
+    this.initScrollService();
+  }
+
+  private initScrollService() {
+    this.scrollSubscription = this.scrollService.subscribe(resp => {
       if (!this.loadingUpdates) {
         this.loadUpdates();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.scrollSubscription.unsubscribe();
   }
 
   public loadUpdates() {
