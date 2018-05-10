@@ -4,6 +4,8 @@ import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +14,7 @@ import 'rxjs/add/observable/of';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public updates: any[] = [];
+  public user: any;
   private page: number = 1;
   private loadingUpdates: boolean;
 
@@ -19,11 +22,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private updateService: UpdateService,
+    private userService: UserService,
+    private authService: AuthService,
     private scrollService: ScrollService
   ) { }
 
   ngOnInit() {
     this.loadUpdates();
+
+    this.loadUser();
 
     this.initScrollService();
   }
@@ -43,15 +50,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   public loadUpdates() {
     this.loadingUpdates = true;
     this.updateService.getUpdates(this.page)
-    .subscribe(resp => {
-      this.page++;
-      const jsonResp = resp.json();
-      for (let i of jsonResp) {
-        this.updates.push(i);
-      }
+      .subscribe(resp => {
+        this.page++;
+        const jsonResp = resp.json();
+        for (let i of jsonResp) {
+          this.updates.push(i);
+        }
 
-      this.loadingUpdates = false;
-    });
+        this.loadingUpdates = false;
+      });
+  }
+
+  private loadUser() {
+    this.userService.getById(Number.parseInt(this.authService.getUserFromStorage()))
+      .subscribe(resp => {
+        this.user = resp.json();
+      });
   }
 
   public updatePosted(value) {

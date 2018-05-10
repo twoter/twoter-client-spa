@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
   private readonly TOKEN_NAME = 'token';
+  private readonly USER_ID = 'user_id';
 
   constructor(
     private http: Http
@@ -42,6 +43,7 @@ export class AuthService {
       this.http.post(environment.api_url + 'auth/login', data)
         .subscribe(resp => {
           this.addTokenInStorage(resp.json().sessionId);
+          this.addUserInStorage(resp.json().userId);
 
           resolve(resp);
         }, error => {
@@ -55,11 +57,13 @@ export class AuthService {
       this.http.post(environment.api_url + 'auth/logout', this.addAuthTokenIfHas())
         .subscribe(resp => {
           this.removeTokenFromStorage();
+          this.removeUserFromStorage();
           resolve(true);
         }, error => {
           if (!error.ok && 401 === error.status) {
             // user already logged out
             this.removeTokenFromStorage();
+            this.removeUserFromStorage();
             resolve(true);
 
             return;
@@ -104,6 +108,18 @@ export class AuthService {
 
   private getTokenFromStorage() {
     return localStorage.getItem(this.TOKEN_NAME)
+  }
+
+  private removeUserFromStorage() {
+    localStorage.removeItem(this.USER_ID)
+  }
+
+  private addUserInStorage(data: any) {
+    localStorage.setItem(this.USER_ID, data)
+  }
+
+  public getUserFromStorage() {
+    return localStorage.getItem(this.USER_ID)
   }
 
 }
