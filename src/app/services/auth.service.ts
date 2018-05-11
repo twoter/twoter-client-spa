@@ -98,6 +98,15 @@ export class AuthService {
     return this.http.get(environment.api_url + 'auth/login-data');
   }
 
+  public getLoggedUserId() {
+    const userData = this.getUserFromStorage();
+    if (!userData) {
+      return -1;
+    }
+
+    return Number.parseInt(userData);
+  }
+
   private removeTokenFromStorage() {
     localStorage.removeItem(this.TOKEN_NAME)
   }

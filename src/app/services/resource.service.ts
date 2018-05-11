@@ -15,7 +15,7 @@ export class ResourceService {
     const formData = new FormData();
     formData.append('file', file, file.name);
 
-    return this.http.post(environment.api_url + 'resources', formData)
+    return this.http.post(environment.api_url + 'image', formData)
       .map(res => res.json());
   }
 

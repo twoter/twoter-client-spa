@@ -41,8 +41,8 @@ export class ImageViewUploadComponent implements OnInit {
     this.resouceService.uploadFile(files)
       .subscribe(
       data => {
-        this.imageId = data.resourceId;
-        this.onChange.emit(data.resourceId);
+        this.imageId = data.imageId;
+        this.onChange.emit(this.imageId);
       },
       error => console.log(error)
       );

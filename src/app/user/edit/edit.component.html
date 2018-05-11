@@ -7,5 +7,6 @@
       Username is invalid.
     </small>
   </form>
-  <app-image-view-upload></app-image-view-upload>
+  <app-image-view-upload (onChange)="onUpload($event)"></app-image-view-upload>
+  <img *ngIf="imageId" src="{{ imageUrl }}" />
 </div>
