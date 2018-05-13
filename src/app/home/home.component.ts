@@ -13,54 +13,17 @@ import { ImageService, ImageSize } from '../services/image.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  public updates: any[] = [];
+export class HomeComponent implements OnInit {
   public user: any;
-  private page: number = 1;
-  private loadingUpdates: boolean;
-
-  private scrollSubscription: Subscription;
 
   constructor(
     private updateService: UpdateService,
     private userService: UserService,
     private authService: AuthService,
-    private imageService: ImageService,
-    private scrollService: ScrollService
   ) { }
 
   ngOnInit() {
-    this.loadUpdates();
-
     this.loadUser();
-
-    this.initScrollService();
-  }
-
-  private initScrollService() {
-    this.scrollSubscription = this.scrollService.subscribe(resp => {
-      if (!this.loadingUpdates) {
-        this.loadUpdates();
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.scrollSubscription.unsubscribe();
-  }
-
-  public loadUpdates() {
-    this.loadingUpdates = true;
-    this.updateService.getUpdates(this.page)
-      .subscribe(resp => {
-        this.page++;
-        const jsonResp = resp.json();
-        for (let i of jsonResp) {
-          this.updates.push(i);
-        }
-
-        this.loadingUpdates = false;
-      });
   }
 
   private loadUser() {
@@ -71,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public updatePosted(value) {
-    this.updates.unshift(value);
+    this.updateService.addEvent(value);
   }
 
 }

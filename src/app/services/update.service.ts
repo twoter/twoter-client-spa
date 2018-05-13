@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CHttp } from '../common/services/chttp.service';
 import { environment } from '../../environments/environment';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UpdateService {
+
+  private addUpdateSubject: Subject<any> = new Subject();
 
   constructor(private http: CHttp) { }
 
@@ -37,7 +40,6 @@ export class UpdateService {
     });
   }
 
-
   public createUpdate(data: { content: string }) {
     return this.http.post(environment.api_url + 'update', data);
   }
@@ -48,6 +50,14 @@ export class UpdateService {
 
   public unlikeUpdate(updateId: number) {
     return this.http.put(environment.api_url + 'update/unlike/' + updateId);
+  }
+
+  public addEvent(updateData: any) {
+    this.addUpdateSubject.next(updateData);
+  }
+
+  public onEventAdded(success?: (value: any) => void, error?: (error: any) => void, complete?: () => void) {
+    this.addUpdateSubject.subscribe(success, error, complete);
   }
 
 }

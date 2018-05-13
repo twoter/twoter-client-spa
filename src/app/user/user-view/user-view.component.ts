@@ -11,8 +11,6 @@ import { UpdateService } from '../../services/update.service';
 export class UserViewComponent implements OnInit {
   public userLoading: boolean;
   public userLoaded: boolean;
-  public updates: any[] = [];
-  private page: number = 1;
   private userId: number;
 
   constructor(
@@ -32,19 +30,8 @@ export class UserViewComponent implements OnInit {
       });
   }
 
-  public loadUpdates() {
-    this.updateService.getUpdatesForUser(this.userId, this.page)
-    .subscribe(resp => {
-      this.page++;
-      const jsonResp = resp.json();
-      for (let i of jsonResp) {
-        this.updates.push(i);
-      }
-    });
-  }
-
   public updatePosted(value) {
-    this.updates.unshift(value);
+    this.updateService.addEvent(value);
   }
 
   private loadUser() {
@@ -52,8 +39,6 @@ export class UserViewComponent implements OnInit {
     this.userService.getById(this.userId)
       .subscribe(resp => {
         const jsonResp = resp.json();
-
-        this.loadUpdates();
 
         this.userLoading = false;
         this.userLoaded = true;

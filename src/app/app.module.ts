@@ -28,6 +28,7 @@ import { ImageViewUploadComponent } from './common/components/image-view-upload/
 import { SearchComponent } from './search/search.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
+import { UpdatesComponent } from './updates/updates.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { UserInfoComponent } from './user/user-info/user-info.component';
     SearchComponent,
     UserViewComponent,
     UserInfoComponent,
+    UpdatesComponent,
   ],
   imports: [
     BrowserModule,
