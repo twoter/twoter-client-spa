@@ -11,6 +11,7 @@ import { UpdateService } from '../../services/update.service';
 export class UserViewComponent implements OnInit {
   public userLoading: boolean;
   public userLoaded: boolean;
+  public user;
   private userId: number;
 
   constructor(
@@ -24,6 +25,8 @@ export class UserViewComponent implements OnInit {
       .map((params: Params) => params.params)
       .subscribe((params) => {
         this.userId = params.id;
+        this.updateService.emitResetUpdates();
+        this.updateService.emitDoLoadUpdates(params.id);
         if (this.isValidUser) {
           this.loadUser();
         }
@@ -39,6 +42,7 @@ export class UserViewComponent implements OnInit {
     this.userService.getById(this.userId)
       .subscribe(resp => {
         const jsonResp = resp.json();
+        this.user = jsonResp;
 
         this.userLoading = false;
         this.userLoaded = true;

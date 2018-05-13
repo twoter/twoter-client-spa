@@ -36,6 +36,12 @@ export class AppComponent {
     return response;
   }
 
+  public goToHome() {
+    this.router.navigate(['/']);
+
+    return false;
+  }
+
   public goToSettings() {
     this.router.navigate(['/edit']);
 

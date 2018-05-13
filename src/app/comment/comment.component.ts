@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../services/comment.service';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -10,7 +11,10 @@ import { environment } from '../../environments/environment';
 export class CommentComponent implements OnInit {
   @Input() public comment: any;
 
-  constructor(private commentService: CommentService) { }
+  constructor(
+    private router: Router,
+    private commentService: CommentService
+  ) { }
 
   ngOnInit() {
   }
@@ -29,6 +33,19 @@ export class CommentComponent implements OnInit {
           this.comment.likes++;
         });
     }
+
+    return false;
+  }
+
+  public viewUser() {
+    if (!this.comment.user) {
+      return false;
+    }
+    this.router.navigate(['/user'], {
+      queryParams: {
+        id: this.comment.user.id
+      }
+    });
 
     return false;
   }

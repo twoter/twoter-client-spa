@@ -46,7 +46,7 @@ export class UpdatesComponent implements OnInit {
         case UpdateType.tag:
           this.tag = data;
           break;
-        case UpdateType.tag:
+        case UpdateType.user:
           this.userId = data;
           break;
       }
