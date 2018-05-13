@@ -10,10 +10,14 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
+  private readonly commentResultCount = 7;
+
   @Input() public update: any;
   public loading: boolean;
-  public showComments: boolean = false;
+  public commentsShowing: boolean = false;
+  public noMoreComments: boolean = false;
   private commentPage: number = 1;
+  private commentsLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -75,7 +79,22 @@ export class UpdateComponent implements OnInit {
     return false;
   }
 
-  public comment() {
+  public showComments() {
+    if (this.commentsShowing) {
+      return false;
+    }
+
+    this.loadComments();
+
+    return false;
+  }
+
+  public loadComments() {
+    if (this.commentsLoading) {
+      return false;
+    }
+    this.commentsLoading = true;
+
     this.commentService.getCommentsForUpdate(this.update.id, this.commentPage)
       .subscribe(resp => {
         this.commentPage++;
@@ -84,12 +103,16 @@ export class UpdateComponent implements OnInit {
         }
         const jsonResp = resp.json();
         for (let i of jsonResp) {
-          this.update.comments.push(i);
+          this.update.comments.unshift(i);
         }
-      });
-    this.showComments = true;
 
-    return false;
+        if (this.commentResultCount > jsonResp.length) {
+          this.noMoreComments = true;
+        }
+
+        this.commentsLoading = false;
+      });
+    this.commentsShowing = true;
   }
 
   public commentAdded(commentData: any) {
@@ -129,11 +152,11 @@ export class UpdateComponent implements OnInit {
   }
 
   get likesCount() {
-    return (this.comment && this.update.likes) ? this.update.likes : 0;
+    return (this.update && this.update.likes) ? this.update.likes : 0;
   }
 
   get commentsCount() {
-    return (this.comment && this.update.commentsCount) ? this.update.commentsCount : 0;
+    return (this.update && this.update.commentsCount) ? this.update.commentsCount : 0;
   }
 
   get imageUrl() {

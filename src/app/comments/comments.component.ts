@@ -9,7 +9,10 @@ import { CommentService } from '../services/comment.service';
 export class CommentsComponent implements OnInit {
   @Input() public updateId: number;
   @Input() public comments: any[];
+  @Input() public noMoreComments: boolean;
+  @Input() public loading: boolean;
   @Output() public commentAdded: EventEmitter<any> = new EventEmitter();
+  @Output() public commentLoad: EventEmitter<any> = new EventEmitter();
 
   constructor(private commentService: CommentService) { }
 
@@ -28,6 +31,12 @@ export class CommentsComponent implements OnInit {
 
         this.commentAdded.emit(jsonResp);
       });
+  }
+
+  public loadOlderComments() {
+    this.commentLoad.emit();
+
+    return false;
   }
 
 }

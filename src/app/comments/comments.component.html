@@ -1,5 +1,12 @@
 <div class="comments-cont">
   <div>
+    <a *ngIf="!noMoreComments" href="#" (click)="loadOlderComments()">load older comments</a>
+    <div *ngIf="loading">
+      Loading...
+    </div>
+    <div *ngIf="0 === comments.length">
+      No comments available.
+    </div>
     <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
   </div>
   <div>
