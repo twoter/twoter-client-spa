@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../services/comment.service';
 import { UpdateService } from '../services/update.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-update',
@@ -133,6 +134,10 @@ export class UpdateComponent implements OnInit {
 
   get commentsCount() {
     return (this.comment && this.update.commentsCount) ? this.update.commentsCount : 0;
+  }
+
+  get imageUrl() {
+    return `${environment.api_url}image/${this.update.imageId}/small`;
   }
 
 }

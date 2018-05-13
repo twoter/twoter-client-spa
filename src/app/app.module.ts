@@ -14,6 +14,7 @@ import { LoginComponent } from './auth/login/login.component';
 
 import { UserService } from './services/user.service';
 import { ScrollService } from './services/scroll.service';
+import { ImageService } from './services/image.service';
 
 import { AuthGuard } from './services/auth.guard';
 import { routing } from './app.routing';
@@ -26,6 +27,7 @@ import { ResourceService } from './services/resource.service';
 import { ImageViewUploadComponent } from './common/components/image-view-upload/image-view-upload.component';
 import { SearchComponent } from './search/search.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { UserInfoComponent } from './user/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { UserViewComponent } from './user/user-view/user-view.component';
     ImageViewUploadComponent,
     SearchComponent,
     UserViewComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { UserViewComponent } from './user/user-view/user-view.component';
     UpdateService,
     ResourceService,
     UserService,
+    ImageService,
     ScrollService
   ],
   bootstrap: [AppComponent]

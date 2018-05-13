@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { ImageService, ImageSize } from '../services/image.service';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private updateService: UpdateService,
     private userService: UserService,
     private authService: AuthService,
+    private imageService: ImageService,
     private scrollService: ScrollService
   ) { }
 

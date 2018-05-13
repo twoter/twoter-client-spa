@@ -1,7 +1,12 @@
-<div style="width: 500px; margin: auto;">
-  <app-update-create (posted)="updatePosted($event)"></app-update-create>
-  <app-update *ngFor="let update of updates" [update]="update"></app-update>
-  <div>
-    <button type="button" (click)="loadUpdates();">load more</button>
+<div style="width: 780px; margin: auto;">
+  <div *ngIf="user" style="float: left; width: 250px; ">
+    <app-user-info [user]="user"></app-user-info>
+  </div>
+  <div style="width: 500px; float:left;margin-left: 15px;">
+    <app-update-create (posted)="updatePosted($event)"></app-update-create>
+    <app-update *ngFor="let update of updates" [update]="update"></app-update>
+    <div>
+      <button type="button" (click)="loadUpdates();">load more</button>
+    </div>
   </div>
 </div>

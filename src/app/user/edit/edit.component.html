@@ -1,12 +1,42 @@
 <div class="edit-page">
   <form (ngSubmit)="edit(form)" #form="ngForm">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" [(ngModel)]="data.username" name="username" #username="ngModel" class="form-control"
-      id="username" [readonly]="loading || !data.username" [required]="data.username">
-    <small class="text-danger" *ngIf="(username.touched || username.dirty) && !username.valid">
-      Username is invalid.
-    </small>
+    <div>
+      <div>
+        <label for="username">Username</label>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="data.username" name="username" #username="ngModel" class="form-control"
+        id="username" [readonly]="loading || !data.username" [required]="data.username">
+      <small class="text-danger" *ngIf="(username.touched || username.dirty) && !username.valid">
+        Username is invalid.
+      </small>
+    </div>
+
+    <div>
+      <div>
+        <label for="firstname">First Name</label>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="data.firstName" name="firstName" #firstName="ngModel" class="form-control"
+        id="firstname" [readonly]="loading || !data.firstName" [required]="data.firstName">
+      <small class="text-danger" *ngIf="(firstName.touched || firstName.dirty) && !firstName.valid">
+        First Name is invalid.
+      </small>
+    </div>
+
+    <div>
+      <div>
+        <label for="lastName">Last Name</label>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="data.lastName" name="lastName" #lastName="ngModel" class="form-control"
+        id="lastName" [readonly]="loading || !data.lastName" [required]="data.lastName">
+      <small class="text-danger" *ngIf="(lastName.touched || lastName.dirty) && !lastName.valid">
+        Last Name is invalid.
+      </small>
+    </div>
   </form>
-  <app-image-view-upload (onChange)="onUpload($event)"></app-image-view-upload>
-  <img *ngIf="imageId" src="{{ imageUrl }}" />
+  <div>
+    <div>Profile picture</div>
+    <app-image-view-upload (onChange)="onUpload($event)"></app-image-view-upload>
+    <img *ngIf="imageId" src="{{ imageUrl }}" />
+    <p *ngIf="!imageId">You don't any profile picture</p>
+  </div>
 </div>

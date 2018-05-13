@@ -33,7 +33,6 @@ export class EditComponent implements OnInit {
   }
 
   public onUpload(imageId) {
-    console.log('imgId', imageId)
     this.imageId = imageId;
   }
 

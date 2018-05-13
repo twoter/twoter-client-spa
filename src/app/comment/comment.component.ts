@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../services/comment.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-comment',
@@ -38,6 +39,10 @@ export class CommentComponent implements OnInit {
 
   get likeText() {
     return (this.comment && this.comment.liked) ? 'unlike' : 'like';
+  }
+
+  get imageUrl() {
+    return `${environment.api_url}image/${this.comment.imageId}/small`;
   }
 
 }
