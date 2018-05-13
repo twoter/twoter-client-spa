@@ -8,9 +8,7 @@ import { Params, ActivatedRoute } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  public updates: any[] = [];
-  private page: number = 1;
-  private loading: boolean;
+  public tag: string;
 
   constructor(
     private updateService: UpdateService,
@@ -19,29 +17,16 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParamMap
-    .map((params: Params) => params.params)
-    .subscribe((params) => {
-      const query = params.q;
-      this.loadUpdates(query);
-    });
-  }
-
-  public loadUpdates(query: string) {
-    this.loading = true;
-    this.updateService.searchUpdates(query, this.page)
-    .subscribe(resp => {
-      this.page++;
-      const jsonResp = resp.json();
-      for (let i of jsonResp) {
-        this.updates.push(i);
-      }
-
-      this.loading = false;
-    });
+      .map((params: Params) => params.params)
+      .subscribe((params) => {
+        this.tag = params.q;
+        this.updateService.emitResetUpdates();
+        this.updateService.emitDoLoadUpdates(this.tag);
+      });
   }
 
   public updatePosted(value) {
-    this.updates.unshift(value);
+    this.updateService.addEvent(value);
   }
 
 }
