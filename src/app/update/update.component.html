@@ -1,14 +1,14 @@
 <div class="update-item">
   <div *ngIf="update.user">
     <img src="{{ imageUrl }}" width="30" height="30" style="vertical-align: middle;" />
-    <a href="#" (click)="viewUser()">{{ update.user.firstName }} {{ update.user.lastName }}</a>
+    <a href="#" class="user-link" (click)="viewUser()">{{ update.user.firstName }} {{ update.user.lastName }}</a>
   </div>
   <div class="update-content" style="white-space: pre-line;" [innerHTML]="update.content" (click)="tagClick($event)"></div>
   <div>
     {{ likesCount }}
-    <a href="#" (click)="like()">{{ likeText }}</a>
+    <a class="action-button" href="#" (click)="like()">{{ likeText }}</a>
     {{ commentsCount }}
-    <a href="#" (click)="showComments()">comment</a>
+    <a class="action-button" href="#" (click)="showComments()">comment</a>
   </div>
   <app-comments *ngIf="commentsShowing" [comments]="comments" [updateId]="update.id" [noMoreComments]="noMoreComments" [loading]="loadingComments" (commentAdded)="commentAdded($event)" (commentLoad)="loadComments()"></app-comments>
 </div>

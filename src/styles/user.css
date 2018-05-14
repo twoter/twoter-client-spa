@@ -1,0 +1,11 @@
+a.user-link,
+a.user-link:visited {
+  color: #4bb245;
+  text-decoration: none;
+}
+
+a.tag-link,
+a.tag-link:visited {
+  color: #40993b;
+  text-decoration: none;
+}

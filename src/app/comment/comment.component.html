@@ -1,11 +1,13 @@
 <div class="comment-item">
   <div>
     <img src="{{ imageUrl }}" width="30" height="30" style="vertical-align: middle;" />
-    <a href="#" (click)="viewUser()">{{ comment.user.firstName }} {{ comment.user.lastName }}</a>
+    <a href="#" class="user-link" (click)="viewUser()">{{ comment.user.firstName }} {{ comment.user.lastName }}</a>
   </div>
-  {{ comment.content }}
+  <div class="comment-content">
+    {{ comment.content }}
+  </div>
   <div>
     {{ likes }}
-    <a href="#" (click)="like()">{{ likeText }}</a>
+    <a class="action-button" href="#" (click)="like()">{{ likeText }}</a>
   </div>
 </div>

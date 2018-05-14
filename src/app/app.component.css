@@ -10,3 +10,16 @@
 .app-body {
   padding-top: 60px;
 }
+
+.app-header a,
+.app-header a:visited {
+  color: #000;
+  text-decoration: none;
+  padding: 16px 5px;
+  display: block;
+  float: right;
+}
+
+.app-header a.home-link {
+  float: left;
+}

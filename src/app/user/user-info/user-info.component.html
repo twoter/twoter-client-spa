@@ -1,6 +1,13 @@
 <div *ngIf="user" style="width: 250px;">
   <img src="{{ userProfilePicture }}" />
-  <div>
-    {{ user.firstName + ' ' + user.lastName}}
+  <div class="info-cont">
+    <div class="name">
+      {{ user.firstName + ' ' + user.lastName}}
+    </div>
+    <div class="username">
+      @{{ user.username }}
+    </div>
+    <div *ngIf="profileView" class="username">> Joined at {{ joinedAt }}
+    </div>
   </div>
 </div>

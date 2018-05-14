@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ImageService, ImageSize } from '../../services/image.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user-info',
@@ -9,6 +10,7 @@ import { ImageService, ImageSize } from '../../services/image.service';
 export class UserInfoComponent implements OnInit {
 
   @Input() public user;
+  @Input() public profileView;
 
   constructor(private imageService: ImageService) { }
 
@@ -16,12 +18,19 @@ export class UserInfoComponent implements OnInit {
   }
 
   get userProfilePicture() {
+    let imageId;
     if (!this.user || !this.user.image) {
-      return null;
+      imageId = 0;
+    } else {
+      imageId = this.user.image.id;
     }
-    const imageUrl = this.imageService.getImageUrl(this.user.image.id, ImageSize.medium);
+    const imageUrl = this.imageService.getImageUrl(imageId, ImageSize.medium);
 
     return imageUrl;
+  }
+
+  get joinedAt() {
+    return this.user ? moment(new Date(this.user.createdAt * 1000)).format('YYYY-MM-DD') : '';
   }
 
 }

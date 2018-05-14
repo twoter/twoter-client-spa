@@ -37,7 +37,7 @@ export class UpdateComponent implements OnInit {
   }
 
   private replaceTagInContent(update: any, tag: string): string {
-    return update.content.replace(new RegExp('(\#' + tag + ')'), '<a href="#" style="color: green;">$1</a>');
+    return update.content.replace(new RegExp('(\#' + tag + ')'), '<a class="tag-link" href="#" style="color: green;">$1</a>');
   }
 
   public tagClick(e) {

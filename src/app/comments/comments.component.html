@@ -1,15 +1,15 @@
 <div class="comments-cont">
   <div>
-    <a *ngIf="!noMoreComments" href="#" (click)="loadOlderComments()">load older comments</a>
+    <a *ngIf="!noMoreComments" class="load-comments-link" href="#" (click)="loadOlderComments()">load older comments</a>
     <div *ngIf="loading">
       Loading...
     </div>
-    <div *ngIf="0 === comments.length">
+    <div *ngIf="0 === comments.length" class="no-comments-cont">
       No comments available.
     </div>
     <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
   </div>
   <div>
-    <input #commentInp (keydown.enter)="createComment(commentInp.value)" class="comment-create-inp">
+    <input class="create-comment" #commentInp (keydown.enter)="createComment(commentInp.value)">
   </div>
 </div>

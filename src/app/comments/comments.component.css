@@ -1,9 +1,23 @@
 .comments-cont {
     margin-top: 10px;
+    padding: 5px;
+    background-color: #e9ebee;
 }
 
-.comments-cont .comment-create-inp {
-    width: 100%;
+.comments-cont .create-comment {
     padding: 5px;
     margin: 0px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.comments-cont .no-comments-cont {
+    margin: 5px;
+}
+
+.comments-cont .load-comments-link,
+.comments-cont .load-comments-link:visited {
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 5px;
 }
