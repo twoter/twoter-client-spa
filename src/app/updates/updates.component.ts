@@ -5,6 +5,7 @@ import { ImageService } from '../services/image.service';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs/Subscription';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Update } from '../models/update';
 
 @Component({
   selector: 'app-updates',
@@ -14,7 +15,7 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 export class UpdatesComponent implements OnInit {
   @Input() public userId;
   @Input() public tag;
-  public updates: any[] = [];
+  public updates: Update[] = [];
   private page: number = 1;
   private loadingUpdates: boolean;
   private noMoreUpdates: boolean = false;

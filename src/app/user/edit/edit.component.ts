@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-edit',
@@ -9,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  public data: any = {};
+  public data: User;
   public imageId;
 
   constructor(

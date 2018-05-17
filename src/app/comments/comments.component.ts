@@ -8,7 +8,7 @@ import { CommentService } from '../services/comment.service';
 })
 export class CommentsComponent implements OnInit {
   @Input() public updateId: number;
-  @Input() public comments: any[];
+  @Input() public comments: Comment[];
   @Input() public noMoreComments: boolean;
   @Input() public loading: boolean;
   @Output() public commentAdded: EventEmitter<any> = new EventEmitter();

@@ -7,6 +7,7 @@ import 'rxjs/add/observable/of';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { ImageService, ImageSize } from '../services/image.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import { ImageService, ImageSize } from '../services/image.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public user: any;
+  public user: User;
 
   constructor(
     private updateService: UpdateService,

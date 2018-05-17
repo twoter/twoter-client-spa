@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UpdateService } from '../../services/update.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-user-view',
@@ -11,7 +12,7 @@ import { UpdateService } from '../../services/update.service';
 export class UserViewComponent implements OnInit {
   public userLoading: boolean;
   public userLoaded: boolean;
-  public user;
+  public user: User;
   private userId: number;
 
   constructor(
