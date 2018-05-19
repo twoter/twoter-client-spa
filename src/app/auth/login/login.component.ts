@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('loginForm') public loginForm: NgForm;
+
   public loginData: any = {};
 
   public loading: boolean;
@@ -36,8 +38,11 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.router.navigateByUrl('/home');
       })
-      .catch(() => {
+      .catch((resp) => {
         this.loading = false;
+        console.log('_err', resp)
+        console.log(this.loginForm)
+        this.loginForm.form.get('password').setErrors({ invalidCredentials: true });
       });
   }
 
