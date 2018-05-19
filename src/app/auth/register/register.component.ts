@@ -4,11 +4,11 @@ import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   @ViewChild('loginForm') public loginForm: NgForm;
 
   public loginData: any = {};
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public login(form) {
+  public signup(form) {
     if (!form.valid) {
       for (const i in form.controls) {
         form.controls[i].markAsTouched();
@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  public signup() {
-    this.router.navigateByUrl('/sign-up');
+  public login() {
+    this.router.navigateByUrl('/login');
 
     return false;
   }

@@ -4,6 +4,7 @@ a.action-button:visited {
   text-decoration: none;
 }
 
+.action-cont:hover,
 .action-cont a.action-button:hover {
   color: #4bb245;
 }

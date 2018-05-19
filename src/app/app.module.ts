@@ -29,6 +29,7 @@ import { SearchComponent } from './search/search.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
 import { UpdatesComponent } from './updates/updates.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UpdatesComponent } from './updates/updates.component';
     UserViewComponent,
     UserInfoComponent,
     UpdatesComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

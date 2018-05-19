@@ -1,8 +1,8 @@
-<div style="width: 780px; margin: auto;">
+<div style="width: 880px; margin: auto;">
   <div *ngIf="user" style="float: left; width: 250px; ">
     <app-user-info [user]="user"></app-user-info>
   </div>
-  <div style="width: 500px; float:left;margin-left: 15px;">
+  <div style="width: 600px; float:left;margin-left: 15px;">
     <app-update-create (posted)="updatePosted($event)"></app-update-create>
     <app-updates></app-updates>
   </div>

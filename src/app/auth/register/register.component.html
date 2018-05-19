@@ -1,0 +1,56 @@
+<div class="auth-cont">
+  <div style="padding: 10px">
+    <form (ngSubmit)="signup(loginForm)" #loginForm="ngForm">
+      <div class="form-group inp-cont">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" required [(ngModel)]="loginData.username" name="username" #username="ngModel" id="user-login-username"
+          placeholder="Username" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(username.dirty || username.touched) && !username.valid">
+          Username is invalid.
+        </div>
+      </div>
+      <div class="form-group inp-cont">
+        <label for="exampleInputEmail1">First Name</label>
+        <input type="text" class="form-control" required [(ngModel)]="loginData.firstname" name="firstname" #firstname="ngModel"
+          id="user-login-firstname" placeholder="First Name" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(firstname.dirty || firstname.touched) && !firstname.valid">
+          First Name is invalid.
+        </div>
+      </div>
+      <div class="form-group inp-cont">
+        <label for="exampleInputEmail1">Last Name</label>
+        <input type="text" class="form-control" required [(ngModel)]="loginData.lastname" name="lastname" #lastname="ngModel" id="user-login-lastname"
+          placeholder="Last Name" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(lastname.dirty || lastname.touched) && !lastname.valid">
+          Last Name is invalid.
+        </div>
+      </div>
+      <div class="form-group inp-cont">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="text" class="form-control" required [(ngModel)]="loginData.email" name="email" #email="ngModel" id="user-login-email"
+          placeholder="Email" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(email.dirty || email.touched) && !email.valid">
+          Email is invalid.
+        </div>
+      </div>
+      <div class="form-group inp-cont">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control auth-inp" id="name" [(ngModel)]="loginData.password" name="password" #password="ngModel"
+          id="user-login-password" placeholder="Password" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(password.dirty || password.touched) && !password.valid">
+          <div *ngIf="password.errors.required">Password is invalid.</div>
+        </div>
+      </div>
+      <div class="form-group inp-cont">
+        <label for="exampleInputPassword1">Confirm password</label>
+        <input type="password" class="form-control auth-inp" id="name" [(ngModel)]="loginData.confirmPassword" name="confirmPassword" #confirmPassword="ngModel"
+          id="user-login-password" placeholder="Password" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(confirmPassword.dirty || confirmPassword.touched) && !confirmPassword.valid">
+          <div *ngIf="password.errors.required">Password is invalid.</div>
+        </div>
+      </div>
+      <button class="btn btn-light" type="button" (click)="login()">Go to login</button>
+      <button class="btn btn-primary" type="submit" [disabled]="loading">Sign up</button>
+    </form>
+  </div>
+</div>

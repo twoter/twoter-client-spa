@@ -5,12 +5,17 @@ import { LoginComponent } from './auth/login/login.component';
 import { EditComponent } from './user/edit/edit.component';
 import { SearchComponent } from './search/search.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
     // canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'sign-up',
+    component: RegisterComponent
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {

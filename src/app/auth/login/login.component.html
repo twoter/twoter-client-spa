@@ -1,22 +1,25 @@
-<div>
-  <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Username</label>
-      <input type="text" class="form-control" required [(ngModel)]="loginData.username" name="username" #username="ngModel" id="user-login-username"
-        placeholder="Username" [readonly]="loading" required>
-      <div class="inp-error" *ngIf="(username.dirty || username.touched) && !username.valid">
-        Username is invalid.
+<div class="auth-cont">
+  <div style="padding: 10px">
+    <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+      <div class="form-group inp-cont">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" required [(ngModel)]="loginData.username" name="username" #username="ngModel" id="user-login-username"
+          placeholder="Username" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(username.dirty || username.touched) && !username.valid">
+          Username is invalid.
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control auth-inp" id="name" [(ngModel)]="loginData.password" name="password" #password="ngModel"
-        id="user-login-password" placeholder="Password" [readonly]="loading" required>
-      <div class="inp-error" *ngIf="(password.dirty || password.touched) && !password.valid">
-        <div *ngIf="password.errors.required">Password is invalid.</div>
-        <div *ngIf="password.errors.invalidCredentials">Invalid username or password.</div>
+      <div class="form-group inp-cont">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control auth-inp" id="name" [(ngModel)]="loginData.password" name="password" #password="ngModel"
+          id="user-login-password" placeholder="Password" [readonly]="loading" required>
+        <div class="inp-error" *ngIf="(password.dirty || password.touched) && !password.valid">
+          <div *ngIf="password.errors.required">Password is invalid.</div>
+          <div *ngIf="password.errors.invalidCredentials">Invalid username or password.</div>
+        </div>
       </div>
-    </div>
-    <button class="btn btn-primary btn-block btn-lg mt-2" type="submit" [disabled]="loading">Submit</button>
-  </form>
+      <button class="btn btn-light" type="button" (click)="signup()">Sign up</button>
+      <button class="btn btn-primary" type="submit" [disabled]="loading">Login</button>
+    </form>
+  </div>
 </div>

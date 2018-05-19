@@ -1,7 +1,8 @@
 .comments-cont {
     margin-top: 10px;
     padding: 5px;
-    background-color: #e9ebee;
+    background-color: #eaedf2;
+    /* background-color: #e9ebee; */
 }
 
 .comments-cont .create-comment {

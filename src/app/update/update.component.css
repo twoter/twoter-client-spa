@@ -1,10 +1,17 @@
 .update-item {
     background-color: #fff;
-    border-radius: 3px;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid #dbdde0;
+    border-right: 1px solid #dbdde0;
+    /* border-radius: 3px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; */
+}
+
+.update-item .info-cont {
+    padding: 10px;
 }
 
 .update-content {
-    padding: 10px;
+    padding: 5px 0px;
 }

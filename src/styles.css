@@ -7,3 +7,21 @@ body {
 img {
   border-radius: 50%;
 }
+
+/* FORMS */
+.auth-cont {
+  width: 400px;
+  border: 1px solid rgb(172, 168, 168);
+  border-radius: 4px;
+  background-color: #fff;
+  margin: auto;
+}
+
+.auth-cont .inp-cont {
+  margin-bottom: 10px;
+}
+
+.auth-cont .inp-error {
+  color: red;
+  margin-top: 5px;
+}
