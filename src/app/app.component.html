@@ -1,8 +1,27 @@
 <div class="app-header">
-  <a href="#" (click)="logout()">logout</a>
-  <a href="#" (click)="goToSettings()">settings</a>
-  <a class="home-link" href="#" (click)="goToHome()">home</a>
+  <button *ngIf="loggedId" type="button" class="btn btn-outline-success logout-btn" (click)="logout()">logout</button>
+
+  <a href="#" *ngIf="loggedId && user" class="user-link" (click)="userLinkClick()">
+    <span class="user-link-cont">
+      <img [src]="imageUrl" width="25" />
+      <span>{{ user.firstName }} {{ user.lastName }}</span>
+    </span>
+  </a>
 </div>
+
+
+<div #dropdownCont class="dropdown-content">
+  <div class="user-info">
+    <div><b>{{ user?.firstName }}</b></div>
+    <div><span>@{{ user?.username }}</span></div>
+  </div>
+  <div class="dropdown-btns">
+    <div class="item" (click)="goToHome()">home</div>
+    <div class="item" (click)="goToProfile()">profile</div>
+    <div class="item" (click)="goToSettings()">settings</div>
+  </div>
+</div>
+
 <div class="app-body">
   <router-outlet></router-outlet>
 </div>

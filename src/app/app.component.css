@@ -15,11 +15,88 @@
 .app-header a:visited {
   color: #000;
   text-decoration: none;
-  padding: 16px 5px;
+  padding: 12px 5px;
   display: block;
   float: right;
 }
 
 .app-header a.home-link {
   float: left;
+}
+
+.logout-btn {
+  border-radius:  20px;
+  margin: 6px 0;
+  float: right;
+}
+
+.user-link-cont {
+  display: inline-block;
+  padding: 2px;
+}
+
+.user-link-cont:hover {
+  background-color: #28a745;
+}
+
+.user-link-cont > span {
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+  position: fixed;
+  right: 5px;
+  top: 50px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
+
+.dropdown-content .dropdown-btns {
+  padding: 5px 0;
+}
+
+.dropdown-content .user-info {
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.dropdown-content .user-info b {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.dropdown-content .user-info span {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.dropdown-content .dropdown-btns > .item {
+  padding: 5px 10px;
+}
+
+.dropdown-content .dropdown-btns > .item:hover {
+  background-color: #28a745;
+  cursor: pointer;
 }

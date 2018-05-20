@@ -3,13 +3,20 @@ import { environment } from '../../environments/environment';
 import { Http } from '@angular/http';
 import { RequestOptions, RequestOptionsArgs, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { User } from '../models/user';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
   private readonly TOKEN_NAME = 'token';
   private readonly USER_ID = 'user_id';
 
+  private loggedInSubject: Subject<User> = new Subject();
+  private loggedOutSubject: Subject<any> = new Subject();
+
   constructor(
+    private userService: UserService,
     private http: Http
   ) { }
 
@@ -45,6 +52,8 @@ export class AuthService {
           this.addTokenInStorage(resp.json().sessionId);
           this.addUserInStorage(resp.json().userId);
 
+          this.emitUserLoggedInEvent();
+
           resolve(resp);
         }, error => {
           reject(error);
@@ -52,18 +61,37 @@ export class AuthService {
     });
   }
 
+  private emitUserLoggedInEvent() {
+    if (!this.isLoggedIn()) {
+      return;
+    }
+    this.userService.getById(this.getLoggedUserId())
+      .subscribe(resp => {
+        const user = resp.json();
+
+        this.loggedInSubject.next(user);
+      });
+  }
+
+  public onUserLogged(success?: (value) => void, error?: (error: any) => void, complete?: () => void) {
+    return this.loggedInSubject.subscribe(success, error, complete);
+  }
+
+  public onUserLoggedOut(success?: (value) => void, error?: (error: any) => void, complete?: () => void) {
+    return this.loggedOutSubject.subscribe(success, error, complete);
+  }
+
   public logout() {
     return new Promise((resolve, reject) => {
       this.http.post(environment.api_url + 'auth/logout', this.addAuthTokenIfHas())
         .subscribe(resp => {
-          this.removeTokenFromStorage();
-          this.removeUserFromStorage();
+          this.handleLoggedOut();
+
           resolve(true);
         }, error => {
           if (!error.ok && 401 === error.status) {
             // user already logged out
-            this.removeTokenFromStorage();
-            this.removeUserFromStorage();
+            this.handleLoggedOut();
             resolve(true);
 
             return;
@@ -72,6 +100,13 @@ export class AuthService {
           reject(error);
         });
     });
+  }
+
+  private handleLoggedOut() {
+    this.removeTokenFromStorage();
+    this.removeUserFromStorage();
+
+    this.loggedOutSubject.next(true);
   }
 
   private addAuthTokenIfHas(options?: RequestOptionsArgs): RequestOptionsArgs {
