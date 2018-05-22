@@ -1,0 +1,16 @@
+.auth-cont {
+  width: 400px;
+  border: 1px solid rgb(172, 168, 168);
+  border-radius: 4px;
+  background-color: #fff;
+  margin: auto;
+
+  .inp-cont {
+    margin-bottom: 10px;
+  }
+
+  .inp-error {
+    color: red;
+    margin-top: 5px;
+  }
+}
