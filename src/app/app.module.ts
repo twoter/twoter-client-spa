@@ -30,6 +30,8 @@ import { UserViewComponent } from './user/user-view/user-view.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
 import { UpdatesComponent } from './updates/updates.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { NotificationService } from './services/notification.service';
+import { NotificationInfoComponent } from './notification-info/notification-info.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { RegisterComponent } from './auth/register/register.component';
     UserInfoComponent,
     UpdatesComponent,
     RegisterComponent,
+    NotificationInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { RegisterComponent } from './auth/register/register.component';
     ResourceService,
     UserService,
     ImageService,
-    ScrollService
+    ScrollService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

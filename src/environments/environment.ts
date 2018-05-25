@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:8090/api/'
+  api_url: 'http://localhost:8090/api/',
+  notification_url: 'ws://localhost:8090/ws/'
 };

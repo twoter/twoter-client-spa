@@ -1,4 +1,5 @@
 <div class="app-header">
+  <span>N: <app-notification-info></app-notification-info></span>
   <button *ngIf="loggedId" type="button" class="btn btn-outline-success logout-btn" (click)="logout()">logout</button>
 
   <a href="#" *ngIf="loggedId && user" class="user-link" (click)="userLinkClick()">

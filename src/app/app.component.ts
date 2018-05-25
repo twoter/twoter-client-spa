@@ -39,7 +39,10 @@ export class AppComponent implements OnInit {
       this.loggedId = false;
       this.user = null;
     });
-    this.getUser();
+
+    if (this.authService.isLoggedIn()) {
+      this.getUser();
+    }
   }
 
   @HostListener('window:scroll', ['$event'])

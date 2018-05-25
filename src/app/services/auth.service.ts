@@ -150,7 +150,7 @@ export class AuthService {
     localStorage.setItem(this.TOKEN_NAME, token)
   }
 
-  private getTokenFromStorage() {
+  public getTokenFromStorage() {
     return localStorage.getItem(this.TOKEN_NAME)
   }
 
