@@ -6,6 +6,7 @@ import { EditComponent } from './user/edit/edit.component';
 import { SearchComponent } from './search/search.component';
 import { UserViewComponent } from './user/user-view/user-view.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { NotificationListingComponent } from './notification-listing/notification-listing.component';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +22,11 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'notifications',
+    component: NotificationListingComponent,
     canActivate: [AuthGuard]
   },
   {

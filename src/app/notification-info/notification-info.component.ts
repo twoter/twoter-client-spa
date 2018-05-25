@@ -25,6 +25,12 @@ export class NotificationInfoComponent implements OnInit {
       this.notSeen++;
       this.notificationService.playSound();
     });
+    this.notificationService.onNotificationSeen(() => {
+      this.notSeen--;
+      if (0 > this.notSeen) {
+        this.notSeen = 0;
+      }
+    });
     this.authService.onUserLogged(user => {
       this.onLoggedIn();
     });

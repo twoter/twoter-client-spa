@@ -32,6 +32,7 @@ import { UpdatesComponent } from './updates/updates.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NotificationService } from './services/notification.service';
 import { NotificationInfoComponent } from './notification-info/notification-info.component';
+import { NotificationListingComponent } from './notification-listing/notification-listing.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NotificationInfoComponent } from './notification-info/notification-info
     UpdatesComponent,
     RegisterComponent,
     NotificationInfoComponent,
+    NotificationListingComponent,
   ],
   imports: [
     BrowserModule,

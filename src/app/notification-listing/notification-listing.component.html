@@ -1,0 +1,15 @@
+<div class="notifications-cont">
+  <p>
+    Your recent notifications.
+  </p>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading">
+    <div *ngFor="let item of notifications" class="notification" [ngStyle]="{ 'background-color': (item.seen ? '#fff' : '') }"
+      (click)="see(item)">
+      {{ item.text }}
+    </div>
+  </div>
+  <div *ngIf="!loading && 0 === notifications.length">
+    You don't have any notifications.
+  </div>
+</div>
