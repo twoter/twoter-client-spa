@@ -7,6 +7,7 @@
     <div *ngFor="let item of notifications" class="notification" [ngStyle]="{ 'background-color': (item.seen ? '#fff' : '') }"
       (click)="see(item)">
       {{ item.text }}
+      <span class="posted-ago">- {{ item.createdAt | timeAgo }}</span>
     </div>
   </div>
   <div *ngIf="!loading && 0 === notifications.length">

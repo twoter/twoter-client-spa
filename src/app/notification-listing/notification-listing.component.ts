@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NotificationService } from '../services/notification.service';
+import { NotificationType } from '../models/notification-type';
+import { Subscriber } from 'rxjs/Subscriber';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-notification-listing',
   templateUrl: './notification-listing.component.html',
   styleUrls: ['./notification-listing.component.scss']
 })
-export class NotificationListingComponent implements OnInit {
+export class NotificationListingComponent implements OnInit, OnDestroy {
 
   public notifications: any[] = [];
   public loading: boolean;
   private page: number = 1;
   private noMore: boolean;
+  private subscribe: Subscription;
 
   constructor(
     private notificationService: NotificationService
@@ -19,6 +23,16 @@ export class NotificationListingComponent implements OnInit {
 
   ngOnInit() {
     this.load();
+
+    this.subscribe = this.notificationService.onNotificationReceived((data) => {
+      const jsonData = JSON.parse(data);
+
+      this.notifications.unshift(this.filterNotification(jsonData));
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscribe.unsubscribe();
   }
 
   private load() {
@@ -32,8 +46,7 @@ export class NotificationListingComponent implements OnInit {
         const jsonResp = resp.json();
 
         for (const item of jsonResp) {
-          item.text = this.generateText(item);
-          this.notifications.push(item);
+          this.notifications.push(this.filterNotification(item));
         }
         if (0 === jsonResp.length) {
           this.noMore = true;
@@ -43,30 +56,30 @@ export class NotificationListingComponent implements OnInit {
       });
   }
 
-  private generateText(notification: any): string {
-    let action = '';
-    switch (notification.type) {
-      case 'UPDATE_LIKE':
-      case 'COMMENT_LIKE':
-        action = 'liked';
-        break;
-      case 'UPDATE_COMMENT':
-        action = 'commented';
-        break;
-    }
-    let target = '';
-    switch (notification.type) {
-      case 'UPDATE_LIKE':
-      case 'UPDATE_COMMENT':
-        target = 'update';
-        break;
-      case 'COMMENT_LIKE':
-        target = 'comment';
-        break;
-    }
-    const s = `@${notification.from.username} ${action} your ${target}`;
+  private filterNotification(data) {
+    data.text = this.generateText(data);
 
-    return s;
+    return data;
+  }
+
+  private generateText(notification: any): string {
+    let text = '';
+    switch (notification.type) {
+      case NotificationType.UPDATE_LIKE:
+        text = 'liked your update';
+        break;
+      case NotificationType.COMMENT_LIKE:
+        text = 'liked your comment';
+        break;
+      case NotificationType.UPDATE_COMMENT:
+        text = 'commented on your update';
+        break;
+      case NotificationType.UPDATE_POSTED:
+        text = 'has posted an update';
+        break;
+    }
+
+    return `@${notification.from.username} ${text}`;
   }
 
   public see(item: any) {

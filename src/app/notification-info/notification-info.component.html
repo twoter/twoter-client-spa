@@ -1,1 +1,6 @@
-<span [routerLink]="['/notifications']" *ngIf="loggedIn">{{ notSeen }}</span>
+<span [routerLink]="['/notifications']" *ngIf="loggedIn" class="notification-item">
+  <i class="fa fa-bell" aria-hidden="true"></i>
+  <span class="not-seen">
+    {{ notSeen }}
+  </span>
+</span>
