@@ -33,6 +33,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { NotificationService } from './services/notification.service';
 import { NotificationInfoComponent } from './notification-info/notification-info.component';
 import { NotificationListingComponent } from './notification-listing/notification-listing.component';
+import { FollowService } from './services/follow.service';
+import { TimeAgoPipe } from './time-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { NotificationListingComponent } from './notification-listing/notificatio
     RegisterComponent,
     NotificationInfoComponent,
     NotificationListingComponent,
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { NotificationListingComponent } from './notification-listing/notificatio
     UserService,
     ImageService,
     ScrollService,
-    NotificationService
+    NotificationService,
+    FollowService
   ],
   bootstrap: [AppComponent]
 })

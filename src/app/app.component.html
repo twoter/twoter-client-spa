@@ -1,20 +1,27 @@
 <div class="app-header">
-  <span>N: <app-notification-info></app-notification-info></span>
-  <button *ngIf="loggedId" type="button" class="btn btn-outline-success logout-btn" (click)="logout()">logout</button>
+  <div class="header-cont">
+    <button *ngIf="loggedId" type="button" class="btn btn-outline-success logout-btn" (click)="logout()">logout</button>
 
-  <a href="#" *ngIf="loggedId && user" class="user-link" (click)="userLinkClick()">
-    <span class="user-link-cont">
-      <img [src]="imageUrl" width="25" />
-      <span>{{ user.firstName }} {{ user.lastName }}</span>
-    </span>
-  </a>
+    <a #userLink href="#" *ngIf="loggedId && user" class="user-link" (click)="userLinkClick()">
+      <span class="user-link-cont">
+        <img [src]="imageUrl" width="25" />
+        <span>{{ user.firstName }} {{ user.lastName }}</span>
+      </span>
+    </a>
+
+    <app-notification-info></app-notification-info>
+  </div>
 </div>
 
 
 <div #dropdownCont class="dropdown-content">
   <div class="user-info">
-    <div><b>{{ user?.firstName }}</b></div>
-    <div><span>@{{ user?.username }}</span></div>
+    <div>
+      <b>{{ user?.firstName }}</b>
+    </div>
+    <div>
+      <span>@{{ user?.username }}</span>
+    </div>
   </div>
   <div class="dropdown-btns">
     <div class="item" (click)="goToHome()">home</div>

@@ -11,7 +11,7 @@ import { User } from './models/user';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
 
   @ViewChild('dropdownCont')
   public dropdownCont: ElementRef;
+
+  @ViewChild('userLink')
+  public userLink: ElementRef;
 
   constructor(
     private userService: UserService,
@@ -84,7 +87,9 @@ export class AppComponent implements OnInit {
   }
 
   public userLinkClick() {
+    const rect = this.userLink.nativeElement.getBoundingClientRect();
     this.dropdownCont.nativeElement.classList.toggle('show');
+    this.dropdownCont.nativeElement.style.left = `${rect.x}px`;
 
     return false;
   }
