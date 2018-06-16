@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { UpdateService } from '../../services/update.service';
 import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-view',
@@ -14,11 +15,13 @@ export class UserViewComponent implements OnInit {
   public userLoaded: boolean;
   public user: User;
   private userId: number;
+  private loggedUserId: number;
 
   constructor(
     private userService: UserService,
     private updateService: UpdateService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,8 @@ export class UserViewComponent implements OnInit {
           this.loadUser();
         }
       });
+
+    this.loggedUserId = this.authService.getLoggedUserId();
   }
 
   public updatePosted(value) {
@@ -52,6 +57,10 @@ export class UserViewComponent implements OnInit {
 
   get isValidUser() {
     return Boolean(this.userId);
+  }
+
+  get isLoggedUser() {
+    return Number(this.userId) === Number(this.loggedUserId);
   }
 
 }

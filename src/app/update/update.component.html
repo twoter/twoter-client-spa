@@ -3,6 +3,7 @@
     <div *ngIf="update.user">
       <img src="{{ imageUrl }}" width="30" height="30" style="vertical-align: middle;" />
       <a href="#" class="user-link" (click)="viewUser()">{{ update.user.firstName }} {{ update.user.lastName }}</a>
+      <span class="posted-ago">- {{ update.createdAt | timeAgo }}</span>
     </div>
     <div class="update-content" style="white-space: pre-line;" [innerHTML]="update.content" (click)="tagClick($event)"></div>
     <div>

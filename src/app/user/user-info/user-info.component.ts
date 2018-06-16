@@ -1,20 +1,40 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ImageService, ImageSize } from '../../services/image.service';
+import { FollowService } from '../../services/follow.service';
 import * as moment from 'moment';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.css']
+  styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
 
   @Input() public user;
   @Input() public profileView;
+  private followLoad: boolean;
+  private loggedUserId: number;
 
-  constructor(private imageService: ImageService) { }
+  constructor(
+    private followService: FollowService,
+    private imageService: ImageService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.followService.onFollow(followData => {
+      if (this.user.id === followData.userId) {
+        this.user.followed = followData.followed;
+        if (followData.followed) {
+          this.user.followers++;
+        } else {
+          this.user.followers--;
+        }
+      }
+    });
+
+    this.loggedUserId = this.authService.getLoggedUserId();
   }
 
   get userProfilePicture() {
@@ -27,6 +47,27 @@ export class UserInfoComponent implements OnInit {
     const imageUrl = this.imageService.getImageUrl(imageId, ImageSize.medium);
 
     return imageUrl;
+  }
+
+  get isLoggedUser() {
+    return this.loggedUserId === this.user.id;
+  }
+
+  public follow() {
+    this.followLoad = true;
+    if (this.user.followed) {
+      this.followService.unfollow(this.user.id)
+        .subscribe(resp => {
+          this.followLoad = false;
+          this.user.followed = false;
+        });
+    } else {
+      this.followService.follow(this.user.id)
+        .subscribe(resp => {
+          this.followLoad = false;
+          this.user.followed = true;
+        });
+    }
   }
 
   get joinedAt() {

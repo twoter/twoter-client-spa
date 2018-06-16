@@ -2,6 +2,7 @@
   <div>
     <img src="{{ imageUrl }}" width="30" height="30" style="vertical-align: middle;" />
     <a href="#" class="user-link" (click)="viewUser()">{{ comment.user.firstName }} {{ comment.user.lastName }}</a>
+    <span class="posted-ago">- {{ comment.createdAt | timeAgo }}</span>
   </div>
   <div class="comment-content">
     {{ comment.content }}

@@ -1,4 +1,5 @@
-<div *ngIf="user" style="width: 250px;">
+<div *ngIf="user" class="cont">
+  <div class="sub-cont">
   <img src="{{ userProfilePicture }}" />
   <div class="info-cont">
     <div class="name">
@@ -7,7 +8,24 @@
     <div class="username">
       @{{ user.username }}
     </div>
-    <div *ngIf="profileView" class="username"> Joined at {{ joinedAt }}
-    </div>
+    <div *ngIf="profileView" class="username"> Joined at {{ joinedAt }}</div>
   </div>
+  <div class="statiscs-info">
+    <span class="item">
+      <div class="count">{{ user.followers }}</div>
+      <div>followers</div>
+    </span>
+    <span class="item">
+      <div class="count">{{ user.following }}</div>
+      <div>following</div>
+    </span>
+    <span class="item">
+      <div class="count">{{ user.updates }}</div>
+      <div>updates</div>
+    </span>
+  </div>
+  <div class="btn-cont" *ngIf="!isLoggedUser">
+    <button class="btn btn-outline-success btn-block" (click)="follow()">{{ user.followed ? 'unfollow' : 'follow' }}</button>
+  </div>
+</div>
 </div>

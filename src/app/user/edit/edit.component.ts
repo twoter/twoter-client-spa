@@ -7,7 +7,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
   public data: User;
@@ -23,12 +23,14 @@ export class EditComponent implements OnInit {
       .subscribe(resp => {
         this.data = resp.json();
         this.imageId = this.data.image ? this.data.image.id : null;
-
-        console.log(this.data)
       });
   }
 
   public edit(form: any) {
+    this.userService.update(form.value)
+      .subscribe(resp => {
+        console.log('updated')
+      });
 
     return false;
   }

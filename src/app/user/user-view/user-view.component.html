@@ -3,7 +3,7 @@
     <app-user-info [user]="user" profileView="true"></app-user-info>
   </div>
   <div style="width: 600px; float:left;margin-left: 15px;">
-    <app-update-create (posted)="updatePosted($event)"></app-update-create>
+    <app-update-create *ngIf="isLoggedUser" (posted)="updatePosted($event)"></app-update-create>
     <app-updates [userId]="userId"></app-updates>
   </div>
 </div>
