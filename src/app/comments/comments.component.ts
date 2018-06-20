@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild
+} from '@angular/core';
 import { CommentService } from '../services/comment.service';
 
 @Component({
@@ -14,6 +21,8 @@ export class CommentsComponent implements OnInit {
   @Output() public commentAdded: EventEmitter<any> = new EventEmitter();
   @Output() public commentLoad: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild('commentInp') input;
+
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
@@ -27,7 +36,7 @@ export class CommentsComponent implements OnInit {
     this.commentService.createComment({ content: content, updateId: this.updateId })
       .subscribe(resp => {
         const jsonResp = resp.json();
-        console.log(JSON.stringify(jsonResp, null, 2));
+        this.input.nativeElement.value = '';
 
         this.commentAdded.emit(jsonResp);
       });

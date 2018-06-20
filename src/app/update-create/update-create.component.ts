@@ -1,4 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild
+} from '@angular/core';
 import { UpdateService } from '../services/update.service';
 
 @Component({
@@ -8,6 +14,8 @@ import { UpdateService } from '../services/update.service';
 })
 export class UpdateCreateComponent implements OnInit {
   @Output() public posted: EventEmitter<any> = new EventEmitter();
+
+  @ViewChild('textarea') input;
 
   constructor(private updateService: UpdateService) { }
 
@@ -23,7 +31,10 @@ export class UpdateCreateComponent implements OnInit {
 
     this.updateService.createUpdate({ content: value })
       .subscribe(resp => {
-        this.posted.emit(resp.json());
+        const jsonResp = resp.json();
+        this.input.nativeElement.value = '';
+
+        this.posted.emit(jsonResp);
       });
   }
 
