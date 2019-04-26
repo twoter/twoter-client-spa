@@ -8,7 +8,11 @@ export class ImageService {
 
   public getImageUrl(imageId: number, size: ImageSize) {
     const sizeS = size.valueOf();
-    return `${environment.api_url}image/${imageId}/${sizeS}`;
+    return `${environment.api_url}image/${this.getValidatedInt(imageId)}/${sizeS}`;
+  }
+
+  private getValidatedInt(n) {
+    return isNaN(parseInt(n)) ? 0 : n;
   }
 }
 
