@@ -1,5 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
+import { LoggedInGuard } from './services/logged-in.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { EditComponent } from './user/edit/edit.component';
@@ -12,11 +13,12 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [LoggedInGuard]
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'sign-up',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [LoggedInGuard]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {

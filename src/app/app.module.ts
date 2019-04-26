@@ -17,6 +17,7 @@ import { ScrollService } from './services/scroll.service';
 import { ImageService } from './services/image.service';
 
 import { AuthGuard } from './services/auth.guard';
+import { LoggedInGuard } from './services/logged-in.guard';
 import { routing } from './app.routing';
 import { AuthService } from './services/auth.service';
 import { CommentService } from './services/comment.service';
@@ -66,6 +67,7 @@ import { TimeAgoPipe } from './time-ago.pipe';
   providers: [
     customHttpProvider,
     AuthGuard,
+    LoggedInGuard,
     AuthService,
     CommentService,
     UpdateService,
