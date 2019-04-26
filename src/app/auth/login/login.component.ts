@@ -42,7 +42,11 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         console.log('_err', resp)
         console.log(this.loginForm)
-        this.loginForm.form.get('password').setErrors({ invalidCredentials: true });
+        let errors: any = { serverError: true };
+        if (401 === resp.status) {
+          errors = { invalidCredentials: true };
+        }
+        this.loginForm.form.get('password').setErrors(errors);
       });
   }
 

@@ -16,6 +16,7 @@
         <div class="inp-error" *ngIf="(password.dirty || password.touched) && !password.valid">
           <div *ngIf="password.errors.required">Password is invalid.</div>
           <div *ngIf="password.errors.invalidCredentials">Invalid username or password.</div>
+          <div *ngIf="password.errors.serverError">Server error.</div>
         </div>
       </div>
       <button class="btn btn-light" type="button" (click)="signup()">Sign up</button>
