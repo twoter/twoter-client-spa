@@ -61,6 +61,10 @@ export class AuthService {
     });
   }
 
+  public create(data: any) {
+    return this.http.post(environment.api_url + 'user', data);
+  }
+
   private emitUserLoggedInEvent() {
     if (!this.isLoggedIn()) {
       return;

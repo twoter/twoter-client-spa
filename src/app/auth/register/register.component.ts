@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild('loginForm') public loginForm: NgForm;
+  @ViewChild('registerForm') public registerForm: NgForm;
 
-  public loginData: any = {};
-
+  public registerData: any = {};
+  public showForm: boolean = true;
   public loading: boolean;
 
   constructor(
@@ -33,16 +33,16 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authService.login(this.loginData)
-      .then(() => {
+    this.authService.create(this.registerData)
+      .subscribe(() => {
         this.loading = false;
-        this.router.navigateByUrl('/home');
-      })
-      .catch((resp) => {
+        this.showForm = false;
+
+      }, (resp) => {
         this.loading = false;
         console.log('_err', resp)
-        console.log(this.loginForm)
-        this.loginForm.form.get('password').setErrors({ invalidCredentials: true });
+        console.log(this.registerForm)
+        this.registerForm.form.get('password').setErrors({ invalidCredentials: true });
       });
   }
 
