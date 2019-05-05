@@ -9,34 +9,26 @@
       <form (ngSubmit)="signup(registerForm)" #registerForm="ngForm">
         <div class="form-group inp-cont">
           <label for="exampleInputEmail1">Username</label>
-          <input type="text" class="form-control" required [(ngModel)]="registerData.username" name="username" #username="ngModel" id="user-login-username"
-            placeholder="Username" [readonly]="loading" required>
+          <input type="text" class="form-control" required [(ngModel)]="registerData.username" name="username" #username="ngModel"
+            id="user-login-username" placeholder="Username" [readonly]="loading" required>
           <div class="inp-error" *ngIf="(username.dirty || username.touched) && !username.valid">
             Username is invalid.
           </div>
         </div>
         <div class="form-group inp-cont">
           <label for="exampleInputEmail1">First Name</label>
-          <input type="text" class="form-control" required [(ngModel)]="registerData.firstname" name="firstname" #firstname="ngModel"
+          <input type="text" class="form-control" required [(ngModel)]="registerData.firstName" name="firstName" #firstName="ngModel"
             id="user-login-firstname" placeholder="First Name" [readonly]="loading" required>
-          <div class="inp-error" *ngIf="(firstname.dirty || firstname.touched) && !firstname.valid">
+          <div class="inp-error" *ngIf="(firstName.dirty || firstName.touched) && !firstName.valid">
             First Name is invalid.
           </div>
         </div>
         <div class="form-group inp-cont">
           <label for="exampleInputEmail1">Last Name</label>
-          <input type="text" class="form-control" required [(ngModel)]="registerData.lastname" name="lastname" #lastname="ngModel" id="user-login-lastname"
-            placeholder="Last Name" [readonly]="loading" required>
-          <div class="inp-error" *ngIf="(lastname.dirty || lastname.touched) && !lastname.valid">
+          <input type="text" class="form-control" required [(ngModel)]="registerData.lastName" name="lastName" #lastName="ngModel"
+            id="user-login-lastname" placeholder="Last Name" [readonly]="loading" required>
+          <div class="inp-error" *ngIf="(lastName.dirty || lastName.touched) && !lastName.valid">
             Last Name is invalid.
-          </div>
-        </div>
-        <div class="form-group inp-cont">
-          <label for="exampleInputEmail1">Email</label>
-          <input type="text" class="form-control" required [(ngModel)]="registerData.email" name="email" #email="ngModel" id="user-login-email"
-            placeholder="Email" [readonly]="loading" required>
-          <div class="inp-error" *ngIf="(email.dirty || email.touched) && !email.valid">
-            Email is invalid.
           </div>
         </div>
         <div class="form-group inp-cont">
@@ -52,7 +44,8 @@
           <input type="password" class="form-control auth-inp" id="name" [(ngModel)]="registerData.confirmPassword" name="confirmPassword"
             #confirmPassword="ngModel" id="user-login-password" placeholder="Password" [readonly]="loading" required>
           <div class="inp-error" *ngIf="(confirmPassword.dirty || confirmPassword.touched) && !confirmPassword.valid">
-            <div *ngIf="password.errors.required">Password is invalid.</div>
+            <div *ngIf="confirmPassword.errors.required">Password is invalid.</div>
+            <div *ngIf="confirmPassword.errors.match">Passwords don't match</div>
           </div>
         </div>
         <button class="btn btn-light" type="button" (click)="login()">Go to login</button>

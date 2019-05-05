@@ -31,9 +31,17 @@ export class RegisterComponent implements OnInit {
 
       return;
     }
+    if (this.registerData.password !== this.registerData.confirmPassword) {
+      form.controls['confirmPassword'].setErrors({ 'match': true });
+
+      return;
+    }
+
+    let data = { ...this.registerData };
+    delete data.confirmPassword;
 
     this.loading = true;
-    this.authService.create(this.registerData)
+    this.authService.create(data)
       .subscribe(() => {
         this.loading = false;
         this.showForm = false;
