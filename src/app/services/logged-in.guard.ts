@@ -26,7 +26,7 @@ export class LoggedInGuard implements CanActivate {
           this.router.navigate(['/home']);
         }
 
-        return Observable.of(true);
+        return true;
       })
       .catch((error) => {
         return Observable.of(true);
