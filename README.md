@@ -20,3 +20,8 @@ Mini social network project combining features from Facebook and Twitter (post u
 ## Purpose
 
 This project main purpose is for skill sharpenning
+
+## Build and run the project
+
+ - `npm install` to install project dependencies.
+ - `npm run start` to run the project. Access the project on [http://localhost:4200](http://localhost:4200)
