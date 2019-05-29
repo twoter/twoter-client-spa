@@ -29,10 +29,10 @@ export class CommentsComponent implements OnInit {
   }
 
   public createComment(content) {
-    console.log(content)
     if ('string' !== typeof content || '' === content.trim()) {
       return;
     }
+
     this.commentService.createComment({ content: content, updateId: this.updateId })
       .subscribe(resp => {
         const jsonResp = resp.json();

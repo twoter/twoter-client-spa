@@ -1,24 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { UpdateService } from '../services/update.service';
 import { AuthService } from '../services/auth.service';
 import { ImageService } from '../services/image.service';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs/Subscription';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Update } from '../models/update';
+
+enum UpdateType {
+  user = 'USER',
+  tag = 'TAG',
+  default = 'DEFAULT'
+}
 
 @Component({
   selector: 'app-updates',
   templateUrl: './updates.component.html',
   styleUrls: ['./updates.component.css']
 })
-export class UpdatesComponent implements OnInit {
+export class UpdatesComponent implements OnInit, OnDestroy {
   @Input() public userId;
   @Input() public tag;
   public updates: Update[] = [];
-  private page: number = 1;
+  private page = 1;
   private loadingUpdates: boolean;
-  private noMoreUpdates: boolean = false;
+  private noMoreUpdates = false;
 
   private scrollSubscription: Subscription;
 
@@ -85,7 +90,7 @@ export class UpdatesComponent implements OnInit {
       .subscribe((resp: any) => {
         this.page++;
         const jsonResp = resp.json();
-        for (let i of jsonResp) {
+        for (const i of jsonResp) {
           this.updates.push(i);
         }
         if (0 === jsonResp.length) {
@@ -126,10 +131,4 @@ export class UpdatesComponent implements OnInit {
     return Boolean(this.userId);
   }
 
-}
-
-enum UpdateType {
-  user = "USER",
-  tag = "TAG",
-  default = "DEFAULT"
 }

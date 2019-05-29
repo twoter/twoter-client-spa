@@ -30,7 +30,7 @@ export class NotificationService {
     this.websocket = new WebSocket(`${environment.notification_url}notification?x-auth-token=${this.authService.getTokenFromStorage()}`);
     this.websocket.onmessage = (event) => {
       this.notificationSubject$.next(event.data);
-    }
+    };
   }
 
   public onNotificationReceived(success?: (value) => void, error?: (error: any) => void, complete?: () => void) {

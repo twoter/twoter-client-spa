@@ -13,7 +13,7 @@ export class NotificationListingComponent implements OnInit, OnDestroy {
 
   public notifications: any[] = [];
   public loading: boolean;
-  private page: number = 1;
+  private page = 1;
   private noMore: boolean;
   private subscribe: Subscription;
 

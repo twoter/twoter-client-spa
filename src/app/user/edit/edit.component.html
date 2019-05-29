@@ -30,7 +30,7 @@
 
     <div>
       <div>Profile picture</div>
-      <app-image-view-upload (onChange)="onUpload($event)"></app-image-view-upload>
+      <app-image-view-upload (changed)="onUpload($event)"></app-image-view-upload>
       <div class="image-cont">
         <img *ngIf="imageId" src="{{ imageUrl }}" />
         <p *ngIf="!imageId">You don't any profile picture</p>

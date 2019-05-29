@@ -12,7 +12,7 @@ export class ImageService {
   }
 
   private getValidatedInt(n) {
-    return isNaN(parseInt(n)) ? 0 : n;
+    return isNaN(parseInt(n, 10)) ? 0 : n;
   }
 }
 

@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('registerForm') public registerForm: NgForm;
 
   public registerData: any = {};
-  public showForm: boolean = true;
+  public showForm = true;
   public loading: boolean;
 
   constructor(
@@ -25,9 +25,9 @@ export class RegisterComponent implements OnInit {
 
   public signup(form) {
     if (!form.valid) {
-      for (const i in form.controls) {
-        form.controls[i].markAsTouched();
-      }
+      Object.keys(form.controls).forEach((name) => {
+        form.controls[name].markAsTouched();
+      });
 
       return;
     }
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let data = { ...this.registerData };
+    const data = { ...this.registerData };
     delete data.confirmPassword;
 
     this.loading = true;
@@ -48,8 +48,6 @@ export class RegisterComponent implements OnInit {
 
       }, (resp) => {
         this.loading = false;
-        console.log('_err', resp)
-        console.log(this.registerForm)
         this.registerForm.form.get('password').setErrors({ invalidCredentials: true });
       });
   }

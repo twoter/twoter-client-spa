@@ -14,10 +14,10 @@ export class UpdateComponent implements OnInit {
 
   @Input() public update: any;
   public loading: boolean;
-  public commentsShowing: boolean = false;
-  public noMoreComments: boolean = false;
-  private commentPage: number = 1;
-  private commentsLoading: boolean = false;
+  public commentsShowing = false;
+  public noMoreComments = false;
+  private commentPage = 1;
+  private commentsLoading = false;
 
   constructor(
     private router: Router,
@@ -27,11 +27,11 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit() {
     const tagNames: string[] = [];
-    for (let tag of this.update.tags || []) {
+    for (const tag of this.update.tags || []) {
       tagNames.push(tag.name);
     }
     this.update.content = this.escapeHtml(this.update.content);
-    for (let tag of tagNames) {
+    for (const tag of tagNames) {
       this.update.content = this.replaceTagInContent(this.update, tag);
     }
   }
@@ -54,11 +54,11 @@ export class UpdateComponent implements OnInit {
 
   private escapeHtml(text) {
     return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
   public like() {
@@ -102,7 +102,7 @@ export class UpdateComponent implements OnInit {
           this.update.comments = [];
         }
         const jsonResp = resp.json();
-        for (let i of jsonResp) {
+        for (const i of jsonResp) {
           this.update.comments.unshift(i);
         }
 

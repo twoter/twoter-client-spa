@@ -36,7 +36,7 @@ export class FollowService {
   }
 
   private getFollowData(userId: number, followed: boolean) {
-    return { userId, followed }
+    return { userId, followed };
   }
 
   public onFollow(success?: (value: any) => void, error?: (error: any) => void, complete?: () => void) {

@@ -147,27 +147,27 @@ export class AuthService {
   }
 
   private removeTokenFromStorage() {
-    localStorage.removeItem(this.TOKEN_NAME)
+    localStorage.removeItem(this.TOKEN_NAME);
   }
 
   private addTokenInStorage(token: string) {
-    localStorage.setItem(this.TOKEN_NAME, token)
+    localStorage.setItem(this.TOKEN_NAME, token);
   }
 
   public getTokenFromStorage() {
-    return localStorage.getItem(this.TOKEN_NAME)
+    return localStorage.getItem(this.TOKEN_NAME);
   }
 
   private removeUserFromStorage() {
-    localStorage.removeItem(this.USER_ID)
+    localStorage.removeItem(this.USER_ID);
   }
 
   private addUserInStorage(data: any) {
-    localStorage.setItem(this.USER_ID, data)
+    localStorage.setItem(this.USER_ID, data);
   }
 
   public getUserFromStorage() {
-    return localStorage.getItem(this.USER_ID)
+    return localStorage.getItem(this.USER_ID);
   }
 
 }

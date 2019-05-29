@@ -10,7 +10,7 @@ export class ImageViewUploadComponent implements OnInit {
 
   @Input() public maxWidth: number;
   @Input() public maxHeight: number;
-  @Output() public onChange: EventEmitter<number> = new EventEmitter();
+  @Output() public changed: EventEmitter<number> = new EventEmitter();
   @ViewChild('inp') private fileInp: ElementRef;
   private imageId: number;
 
@@ -25,8 +25,8 @@ export class ImageViewUploadComponent implements OnInit {
     if (file) {
       const img = new Image();
       img.onload = () => {
-        if ((!this.maxWidth || img.width == this.maxWidth) &&
-          (!this.maxHeight || img.height == this.maxHeight)
+        if ((!this.maxWidth || img.width === this.maxWidth) &&
+          (!this.maxHeight || img.height === this.maxHeight)
         ) {
           this.doUpload(event);
         } else {
@@ -42,9 +42,9 @@ export class ImageViewUploadComponent implements OnInit {
       .subscribe(
       data => {
         this.imageId = data.imageId;
-        this.onChange.emit(this.imageId);
+        this.changed.emit(this.imageId);
       },
-      error => console.log(error)
+      error => console.error(error)
       );
   }
 

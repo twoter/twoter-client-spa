@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
   public edit(form: any) {
     this.userService.update(form.value)
       .subscribe(resp => {
-        console.log('updated')
+        console.log('updated');
       });
 
     return false;

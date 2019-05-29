@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
 
   public login(form) {
     if (!form.valid) {
-      for (const i in form.controls) {
-        form.controls[i].markAsTouched();
-      }
+      Object.keys(form.controls).forEach((name) => {
+        form.controls[name].markAsTouched();
+      });
 
       return;
     }
@@ -40,12 +40,11 @@ export class LoginComponent implements OnInit {
       })
       .catch((resp) => {
         this.loading = false;
-        console.log('_err', resp)
-        console.log(this.loginForm)
         let errors: any = { serverError: true };
         if (401 === resp.status) {
           errors = { invalidCredentials: true };
         }
+
         this.loginForm.form.get('password').setErrors(errors);
       });
   }
