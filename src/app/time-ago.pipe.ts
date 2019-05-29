@@ -13,7 +13,7 @@ export class TimeAgoPipe implements PipeTransform {
     const curTime = new Date().getTime() / 1000;
     let d = Math.round(curTime - time);
 
-    let result = '-';
+    let result = 'n/a';
     if (d <= 60) {
       result = 'just now';
     } else {
@@ -34,7 +34,12 @@ export class TimeAgoPipe implements PipeTransform {
               result = `${d} weeks ago`;
             } else {
               d = Math.round(d / 4);
-              result = `${d} months ago`;
+              if (d < 12) {
+                result = `${d} months ago`;
+              } else {
+                d = Math.round(d / 12);
+                result = `${d} years ago`;
+              }
             }
           }
         }
