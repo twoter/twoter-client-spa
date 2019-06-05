@@ -1,11 +1,13 @@
 <div class="app-header">
   <div class="header-cont">
+    <a class="app-logo" (click)="goToHome()">Twoter</a>
+
     <button *ngIf="loggedId" type="button" class="btn btn-outline-success logout-btn" (click)="logout()">logout</button>
 
     <a #userLink href="#" *ngIf="loggedId && user" class="user-link" (click)="userLinkClick()">
       <span class="user-link-cont">
         <img [src]="imageUrl" width="25" />
-        <span>{{ user.firstName }} {{ user.lastName }}</span>
+        <span class="header-user-name">{{ user.firstName }} {{ user.lastName }}</span>
       </span>
     </a>
 
@@ -24,7 +26,6 @@
     </div>
   </div>
   <div class="dropdown-btns">
-    <div class="item" (click)="goToHome()">home</div>
     <div class="item" (click)="goToProfile()">profile</div>
     <div class="item" (click)="goToSettings()">settings</div>
   </div>

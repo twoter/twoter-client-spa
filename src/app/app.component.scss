@@ -10,6 +10,27 @@
   background-color: greenyellow;
   position: fixed;
 
+  a.app-logo {
+    color: #28a745;
+    text-decoration: none;
+    padding: 10px 5px;
+    display: block;
+    float: left;
+    margin: 0px 5px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  a.app-logo:hover {
+    color: #fff;
+    background-color: #28a745;
+    cursor: pointer;
+  }
+
+  .header-user-name {
+    margin-left: 5px;
+  }
+
   a,
   .app-header a:visited {
     color: #000;
