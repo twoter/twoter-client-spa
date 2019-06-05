@@ -3,6 +3,7 @@ import { ImageService, ImageSize } from '../../services/image.service';
 import { FollowService } from '../../services/follow.service';
 import * as moment from 'moment';
 import { AuthService } from '../../services/auth.service';
+import { UpdateService } from '../../services/update.service';
 
 @Component({
   selector: 'app-user-info',
@@ -15,14 +16,20 @@ export class UserInfoComponent implements OnInit {
   @Input() public profileView;
   private followLoad: boolean;
   private loggedUserId: number;
+  private updateAddedSubscription;
 
   constructor(
     private followService: FollowService,
     private imageService: ImageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private updateService: UpdateService
   ) { }
 
   ngOnInit() {
+    this.updateAddedSubscription = this.updateService.onEventAdded(() => {
+      this.user.updates++;
+    });
+
     this.followService.onFollow(followData => {
       if (this.user.id === followData.userId) {
         this.user.followed = followData.followed;
@@ -35,6 +42,10 @@ export class UserInfoComponent implements OnInit {
     });
 
     this.loggedUserId = this.authService.getLoggedUserId();
+  }
+
+  ngOnDestroy() {
+    this.updateAddedSubscription.unsubscribe();
   }
 
   get userProfilePicture() {

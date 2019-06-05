@@ -84,7 +84,7 @@ export class UpdateService {
   }
 
   public onEventAdded(success?: (value: any) => void, error?: (error: any) => void, complete?: () => void) {
-    this.addUpdateSubject.subscribe(success, error, complete);
+    return this.addUpdateSubject.subscribe(success, error, complete);
   }
 
   public emitResetUpdates() {
