@@ -1,6 +1,8 @@
 <div style="width: 880px; margin: auto;">
   <div *ngIf="user" style="float: left; width: 250px; ">
     <app-user-info [user]="user" profileView="true"></app-user-info>
+
+    <app-popular-tags></app-popular-tags>
   </div>
   <div style="width: 600px; float:left;margin-left: 15px;">
     <app-update-create *ngIf="isLoggedUser" (posted)="updatePosted($event)"></app-update-create>

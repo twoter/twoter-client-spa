@@ -1,0 +1,7 @@
+<app-content-panel>
+  <div class="item-title">Popular tags</div>
+  <div *ngIf="!loading && (!popularTags || 0 === popularTags.length)">No tags found.</div>
+  <div *ngFor="let tag of popularTags">
+    <a href="#" class="tag-link" (click)="viewTag(tag.name)">#{{ tag.name }}</a>
+  </div>
+</app-content-panel>

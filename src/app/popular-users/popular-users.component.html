@@ -1,0 +1,7 @@
+<app-content-panel>
+  <div class="item-title">Popular users</div>
+  <div *ngIf="!loading && (!popularUsers || 0 === popularUsers.length)">No tags found.</div>
+  <div *ngFor="let user of popularUsers">
+    <a href="#" class="user-link" (click)="viewUser(user.id)">{{ user.firstName + ' ' + user.lastName }} @{{ user.username }}</a>
+  </div>
+</app-content-panel>

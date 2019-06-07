@@ -7,6 +7,10 @@ export class UserService {
 
   constructor(private http: CHttp) { }
 
+  public getMostPopular() {
+    return this.http.get(environment.api_url + 'user/popular');
+  }
+
   public getById(id: number) {
     return this.http.get(environment.api_url + 'user/' + id);
   }

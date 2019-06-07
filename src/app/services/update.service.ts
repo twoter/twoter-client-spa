@@ -14,6 +14,10 @@ export class UpdateService {
 
   constructor(private http: CHttp) { }
 
+  public getPopularTags() {
+    return this.http.get(environment.api_url + 'update/tags/popular');
+  }
+
   public getUpdates(page?: number) {
     const params: any = {};
     if (0 < page) {

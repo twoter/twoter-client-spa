@@ -36,6 +36,9 @@ import { NotificationInfoComponent } from './notification-info/notification-info
 import { NotificationListingComponent } from './notification-listing/notification-listing.component';
 import { FollowService } from './services/follow.service';
 import { TimeAgoPipe } from './time-ago.pipe';
+import { ContentPanelComponent } from './content-panel/content-panel.component';
+import { PopularTagsComponent } from './popular-tags/popular-tags.component';
+import { PopularUsersComponent } from './popular-users/popular-users.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import { TimeAgoPipe } from './time-ago.pipe';
     NotificationInfoComponent,
     NotificationListingComponent,
     TimeAgoPipe,
+    ContentPanelComponent,
+    PopularTagsComponent,
+    PopularUsersComponent,
   ],
   imports: [
     BrowserModule,

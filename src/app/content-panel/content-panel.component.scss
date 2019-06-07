@@ -1,0 +1,15 @@
+.cont {
+  margin-top: 10px;
+  width: 250px;
+  .sub-cont {
+    background-color: #fff;
+    border: 1px solid #dbdde0;
+    padding: 5px;
+    .item-title {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 25px;
+      margin-bottom: 5px;
+    }
+  }
+}
